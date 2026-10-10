@@ -1,0 +1,50 @@
+# week-05/submission.yml — your declaration for this lab.
+#
+# Facts only. Every explanation goes in lab-report.md; nothing here repeats prose.
+# Fill every value. Check it before you push:
+#
+#     python tests/validate_submission.py
+
+schema: 1
+week: "05"
+
+student:
+  name: Ashimkhan Kuralay
+  student_id: 24B030990
+  github: lenzrma
+
+assistant:
+  tool: Claude
+  model: Claude Sonnet 5.5
+
+language:
+  name: python
+  path: A
+
+counts:
+  tests: 24
+  v1_changed: no
+  change_log_rows: 1
+
+checker:
+  pass: 32
+  fail: 0
+  error: 0
+  commit: 27848af
+  known_fails: []
+
+assumptions:
+  non_integer_time: not-handled
+
+carried:
+  week04_touching: allowed
+
+review_findings:
+  - "M2, M7, M8, M9, M10: survived my first 11 tests, caught after I added 13 tests (24 total)"
+  - "test_out_of_bounds used (1400, 1600): both AC1 day bound and AC2 duration reject it, so replaced by (1380, 1441)"
+  - "v1: passed F1-F10 unchanged, so booking.py is identical to v1 and the change log has one row without a code change"
+
+honesty:
+  v1_unedited: yes
+  can_explain_overlap_without_ai: yes
+  ai_usage_disclosed: yes
