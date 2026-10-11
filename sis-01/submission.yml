@@ -1,0 +1,36 @@
+# SIS #01 — the declaration. FACTS ONLY: every explanation stays in report.md.
+
+schema: 1
+assignment: "sis-01"            # do not edit
+
+student:
+  name: "Ashimkhan Kuralay"
+  student_id:  24B030990                 # FILL: e.g. 24B031016
+  group:  Monday from 16:00 to 19:00                      # FILL: your group code
+  github: "lenzrma"
+
+topic: "1.1"
+
+assistant:
+  tool: "Claude.ai"
+  model: "Claude Sonnet 5.5"
+
+checker:
+  pass: 24
+  fail: 0
+  error: 0
+  commit: d19ea59
+
+counts:
+  main_words: 894
+  reflection_words: 151
+  exchanges: 3
+  verified_claims: 3
+  revisions: 3
+
+decisions:
+  keep: 1
+  qualify: 2
+  reject: 0
+
+known_fails: []
