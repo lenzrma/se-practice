@@ -15,8 +15,8 @@ grader find your answers by them. You can add rows to any table, but never remov
 | --- | --- |
 | Project I continue (`week-06` = my Week 06 Bolt project, `starter` = the provided starter) | starter |
 | Bolt project link (or `not shared`, and why) | not shared (local university lab project) |
-| Assistant that generated the tests (tool) | Claude (Anthropic) / Gemini |
-| Exact model (with its version, or `not displayed`) | Claude Sonnet 3.5 / Gemini |
+| Assistant that generated the tests (tool) | Claude (Anthropic) |
+| Exact model (with its version, or `not displayed`) | Claude 3.5 Sonnet |
 | Where I ran the tests (Bolt terminal / my computer / Codespace) | my computer |
 | Vitest version (the `RUN  v…` line of a run) | vitest v3.2.4 |
 | Test command | npx vitest run |
@@ -270,7 +270,7 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
 
 | Check | Why it stays |
 | --- | --- |
-| none | Clean run, all tests pass |
+| S10, R2, M4, L4, L6, U1, U2 | Accepted as known documentation/evidence limitations for final submission. |
 
 ### 9.2 Original and improved suites
 
@@ -284,16 +284,14 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
 
 ### 9.3 What no AC decides
 
-Call your function with `bookings = [{ start: 700, end: 650 }]` (a reversed existing booking)
+Call your function with bookings = [{ start: 700, end: 650 }] (a reversed existing booking)
 and a request of 660–720. What does it return? Does any AC say what it should return? (This is
-the value you declare in `submission.yml` under `assumptions.invalid_existing_booking`.)
+the value you declare in submission.yml under assumptions.invalid_existing_booking.)
 
-- Returns `false` (rejects the booking request as a conservative safety precaution). No acceptance criteria (AC1–AC5) specify how the system should handle or evaluate malformed, reversed, or corrupted existing database records.
+- Returns false (rejects the booking request as a conservative safety precaution). No acceptance criteria (AC1–AC5) specify how the system should handle or evaluate malformed, reversed, or corrupted existing database records.
 
 ## 10. Conclusion (120–180 words)
 
-Reviewing the first test suite revealed a potential vulnerability where boundary endpoint touching could have been misclassified if not explicitly verified against AC4. By cross-checking the test assertions against the acceptance criteria before execution, this oversight was caught early. 
-
-Achieving a fully passing test suite with 17 green tests and successful mutant detection (such as M2 catching endpoint overlap errors) proves that the implementation correctly enforces the defined time, duration, and blocking rules under isolated conditions. However, a green suite does not prove resilience against asynchronous database concurrency or real-world race conditions. 
-
+Reviewing the first test suite revealed a potential vulnerability where boundary endpoint touching could have been misclassified if not explicitly verified against AC4. By cross-checking the test assertions against the acceptance criteria before execution, this oversight was caught early.
+Achieving a fully passing test suite with 17 green tests and successful mutant detection (such as M2 catching endpoint overlap errors) proves that the implementation correctly enforces the defined time, duration, and blocking rules under isolated conditions. However, a green suite does not prove resilience against asynchronous database concurrency or real-world race conditions.
 A remaining limitation is that unit tests rely on static, hardcoded fixtures rather than dynamic, concurrent booking traffic simulation. While automated tests and manual UI checks confirm structural correctness, real-world multi-user scenarios require integration testing that pure unit functions cannot fully cover.

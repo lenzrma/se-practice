@@ -91,4 +91,7 @@ describe('canBook', () => {
     ];
     expect(check(660, 720, { bookings })).toBe(true);
   });
+  test('AC1 lower bound: start below 0 is rejected even when it is after now', () => {
+    expect(check(-10, 30, { now: -20 })).toBe(false);
+  });
 });
