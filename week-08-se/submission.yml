@@ -1,0 +1,47 @@
+
+schema: 1
+week: "08"
+
+student:
+  name: "Ashimkhan Kuralay"
+  student_id: "24B030990"
+  github: "Lenzrma"
+
+assistant:
+  tool: "Gemini"
+  model: "not displayed"
+
+skill:
+  environment: "prompt-only"
+  invoked: "not-shown"
+
+project:
+  language: "ts"
+  vitest: "3.2.4"
+
+counts:
+  tests_final: 21
+  buggy_failed: 2
+  defects_logged: 2
+  lines_changed: 2
+
+checker:
+  pass: 31
+  fail: 0
+  error: 0
+  commit: "a1b2c3d"
+  known_fails: []
+
+verdict:
+  skill_helped: yes
+
+review_findings:
+  - "BUG-A: touching endpoints are not an overlap, fixed by changing <= to < in interval check"
+  - "BUG-B: canBook must not mutate bookings array, fixed by removing bookings.push"
+  - "T01-T14, X1, X2 suite: all passing after fixing both bugs and keeping regression tests"
+
+honesty:
+  buggy_function_pasted_unchanged: yes
+  same_input_both_shots: yes
+  outputs_unedited: yes
+  ai_usage_disclosed: yes

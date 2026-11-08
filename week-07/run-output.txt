@@ -1,0 +1,248 @@
+===== M1 =====
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice/week-07/app
+
+ ✓ src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed 1ms
+ ✓ src/booking.test.ts > canBook > T02 AC1: start equal to now is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T03 AC1: zero duration is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T04 AC1: reversed interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T05 AC1: end past the end of the day is rejected 0ms
+ × src/booking.test.ts > canBook > T06 AC2: exactly 120 minutes is allowed 3ms
+   → expected false to be true // Object.is equality
+ ✓ src/booking.test.ts > canBook > T07 AC2: 121 minutes is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T09 AC4: partial overlap is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T10 AC4: interval containing the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T11 AC4: interval inside the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T12 AC4: identical interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T13 AC3: blocked room is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged 0ms
+ ✓ src/booking.test.ts > canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+ ✓ src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC1 lower bound: start below 0 is rejected even when it is after now 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > T06 AC2: exactly 120 minutes is allowed
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:40:29
+     38| 
+     39|   test('T06 AC2: exactly 120 minutes is allowed', () => {
+     40|     expect(check(720, 840)).toBe(true);
+       |                             ^
+     41|   });
+     42| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 passed (18)
+   Start at  19:35:37
+   Duration  224ms (transform 20ms, setup 0ms, collect 17ms, tests 5ms, environment 0ms, prepare 40ms)
+
+===== M2 =====
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice/week-07/app
+
+ × src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed 4ms
+   → expected false to be true // Object.is equality
+ ✓ src/booking.test.ts > canBook > T02 AC1: start equal to now is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T03 AC1: zero duration is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T04 AC1: reversed interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T05 AC1: end past the end of the day is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T07 AC2: 121 minutes is rejected 0ms
+ × src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed 0ms
+   → expected false to be true // Object.is equality
+ ✓ src/booking.test.ts > canBook > T09 AC4: partial overlap is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T10 AC4: interval containing the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T11 AC4: interval inside the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T12 AC4: identical interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T13 AC3: blocked room is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+ × src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged 0ms
+   → expected false to be true // Object.is equality
+ ✓ src/booking.test.ts > canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+ × src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+   → expected false to be true // Object.is equality
+ ✓ src/booking.test.ts > canBook > AC1 lower bound: start below 0 is rejected even when it is after now 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:20:29
+     18| describe('canBook', () => {
+     19|   test('T01 AC4: touching after the booking is allowed', () => {
+     20|     expect(check(660, 720)).toBe(true);
+       |                             ^
+     21|   });
+     22| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:48:29
+     46| 
+     47|   test('T08 AC4: touching before the booking is allowed', () => {
+     48|     expect(check(570, 600)).toBe(true);
+       |                             ^
+     49|   });
+     50| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:79:20
+     77|     const before = JSON.stringify(bookings);
+     78|     const result = canBook({ start: 660, end: 720, now: 540, blocked: …
+     79|     expect(result).toBe(true);
+       |                    ^
+     80|     expect(JSON.stringify(bookings)).toBe(before);
+     81|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ src/booking.test.ts:92:43
+     90|       { start: 720, end: 780 },
+     91|     ];
+     92|     expect(check(660, 720, { bookings })).toBe(true);
+       |                                           ^
+     93|   });
+     94|   test('AC1 lower bound: start below 0 is rejected even when it is aft…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 14 passed (18)
+   Start at  19:35:38
+   Duration  190ms (transform 18ms, setup 0ms, collect 17ms, tests 6ms, environment 0ms, prepare 48ms)
+
+===== M3 =====
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice/week-07/app
+
+ ✓ src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed 1ms
+ ✓ src/booking.test.ts > canBook > T02 AC1: start equal to now is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T03 AC1: zero duration is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T04 AC1: reversed interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T05 AC1: end past the end of the day is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T07 AC2: 121 minutes is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T09 AC4: partial overlap is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T10 AC4: interval containing the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T11 AC4: interval inside the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T12 AC4: identical interval is rejected 0ms
+ × src/booking.test.ts > canBook > T13 AC3: blocked room is rejected 3ms
+   → expected true to be false // Object.is equality
+ ✓ src/booking.test.ts > canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged 0ms
+ ✓ src/booking.test.ts > canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+ ✓ src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC1 lower bound: start below 0 is rejected even when it is after now 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > T13 AC3: blocked room is rejected
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ src/booking.test.ts:68:48
+     66| 
+     67|   test('T13 AC3: blocked room is rejected', () => {
+     68|     expect(check(660, 720, { blocked: true })).toBe(false);
+       |                                                ^
+     69|   });
+     70| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 17 passed (18)
+   Start at  19:35:38
+   Duration  188ms (transform 19ms, setup 0ms, collect 16ms, tests 5ms, environment 0ms, prepare 37ms)
+
+===== PROBE =====
+true
+===== FINAL =====
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice/week-07/app
+
+ ✓ src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed 1ms
+ ✓ src/booking.test.ts > canBook > T02 AC1: start equal to now is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T03 AC1: zero duration is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T04 AC1: reversed interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T05 AC1: end past the end of the day is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T07 AC2: 121 minutes is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed 0ms
+ ✓ src/booking.test.ts > canBook > T09 AC4: partial overlap is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T10 AC4: interval containing the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T11 AC4: interval inside the booking is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T12 AC4: identical interval is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T13 AC3: blocked room is rejected 0ms
+ ✓ src/booking.test.ts > canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged 0ms
+ ✓ src/booking.test.ts > canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+ ✓ src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+ ✓ src/booking.test.ts > canBook > AC1 lower bound: start below 0 is rejected even when it is after now 0ms
+
+ Test Files  1 passed (1)
+      Tests  18 passed (18)
+   Start at  19:35:40
+   Duration  195ms (transform 19ms, setup 0ms, collect 17ms, tests 2ms, environment 0ms, prepare 42ms)
+
+===== GIT =====
+ M src/booking.test.ts
+ M ../suites/first/booking.test.ts
+?? ../../week-05/
+?? ../run-output.txt

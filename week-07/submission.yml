@@ -1,0 +1,51 @@
+schema: 1
+week: "07"
+
+student:
+  name: "Kuralay Ashimkhan"
+  student_id: "24B030990"
+  github: "lenzrma"
+
+assistant:
+  tool: "Claude"
+  model: "Claude 3.5 Sonnet"
+
+project:
+  baseline: "starter"
+  bolt_url: "not-shared"
+  vitest: "3.2.4"
+
+counts:
+  tests_first: 18
+  tests_final: 18
+  first_run_failed: 0
+  review_decisions: 2
+  mutants_detected: 3
+
+checker:
+  pass: 26
+  fail: 5
+  error: 2
+  commit: ""
+  known_fails:
+    - "S10"
+    - "R2"
+    - "M4"
+    - "L4"
+    - "L6"
+    - "U1"
+    - "U2"
+
+assumptions:
+  invalid_existing_booking: "returns-false"
+
+review_findings:
+  - "T01: verified AC4 allowing endpoint touching after the booking"
+  - "T06: verified AC2 allowing exactly 120 minutes duration"
+  - "T13: verified AC3 correctly rejecting blocked rooms"
+
+honesty:
+  first_suite_unedited: "yes"
+  outputs_unedited: "yes"
+  mutants_restored: "yes"
+  ai_usage_disclosed: "yes"
