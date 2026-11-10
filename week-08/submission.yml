@@ -29,7 +29,7 @@ checker:
   pass: 31
   fail: 0
   error: 0
-  commit: "PUT_REAL_SHA_HERE"
+  commit: "cfc1778"
   known_fails: []
 
 verdict:
@@ -38,10 +38,10 @@ verdict:
 review_findings:
   - "BUG-A (line 17): <= and >= treat touching endpoints as an overlap; fixed by changing them to < and >."
   - "BUG-B (line 20): canBook pushes into bookings; fixed by deleting that line. It was hidden by BUG-A because the AC5 test used a touching request."
-  - "Both assistants named both bugs, but neither patch fits my canBook (rewritten signature, wrong field names), so I did not use them."
+  - "Both Gemini answers named BUG-A and BUG-B, but neither patch fits src/booking.ts: one rewrote canBook with a different signature and dropped the AC1-AC3 checks, the other used startTime/endTime fields that do not exist; its BUG-B test (9.5-10.5) overlaps the booking and would pass on the buggy code."
 
 honesty:
   buggy_function_pasted_unchanged: yes
-  same_input_both_shots: yes
+  same_input_both_chats: yes
   outputs_unedited: yes
   ai_usage_disclosed: yes
