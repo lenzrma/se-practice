@@ -90,15 +90,18 @@ describe('canBook', () => {
     expect(check(660, 720, { bookings })).toBe(true);
   });
 
-  test('BUG-A', () => {
-    const bookings = [{ start: 600, end: 660 }];
-    expect(canBook({ start: 660, end: 720, now: 540, blocked: false, bookings })).toBe(true);
+  test('BUG-A touching both neighbours is available', () => {
+    const bookings = [
+      { start: 600, end: 660 },
+      { start: 780, end: 840 },
+    ];
+    expect(canBook({ start: 660, end: 780, now: 540, blocked: false, bookings })).toBe(true);
   });
 
-  test('BUG-B', () => {
+  test('BUG-B available request does not change bookings', () => {
     const bookings = [{ start: 600, end: 660 }];
     const copy = JSON.stringify(bookings);
-    canBook({ start: 660, end: 720, now: 540, blocked: false, bookings });
+    expect(canBook({ start: 720, end: 780, now: 540, blocked: false, bookings })).toBe(true);
     expect(JSON.stringify(bookings)).toBe(copy);
   });
 });
