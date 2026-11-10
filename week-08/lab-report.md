@@ -30,10 +30,14 @@ The **real** output of your Week 07 suite, run in `week-08/app/` **before** you 
 anything. It should be green. If it is not, say why under the block.
 
 ```text
-✓ src/booking.test.ts (19)
-   Test Files  1 passed (1)
-      Tests  19 passed (19)
-  Start time: 10:00:00
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ✓ src/booking.test.ts (19 tests | 2 skipped) 2ms
+
+ Test Files  1 passed (1)
+      Tests  17 passed | 2 skipped (19)
+   Start at  11:21:38
+   Duration  239ms (transform 25ms, setup 0ms, collect 16ms, tests 2ms, environment 0ms, prepare 48ms)
 ```
 
 ### 2.2 The same suite on the provided canBook
@@ -42,10 +46,116 @@ You copied the whole `canBook` function from `buggy/booking.ts` (or `.js`) over 
 nothing else. This is the real output:
 
 ```text
-❯ src/booking.test.ts (19)
-   × BUG-A
-   × BUG-B
-  Tests  2 failed, 17 passed (19)
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ❯ src/booking.test.ts (19 tests | 4 failed | 2 skipped) 6ms
+   × canBook > T01 AC4: touching after the booking is allowed 4ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > T02 AC1: start equal to now is rejected 0ms
+   ✓ canBook > T03 AC1: zero duration is rejected 0ms
+   ✓ canBook > T04 AC1: reversed interval is rejected 0ms
+   ✓ canBook > T05 AC1: end past the end of the day is rejected 0ms
+   ✓ canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+   ✓ canBook > T07 AC2: 121 minutes is rejected 0ms
+   × canBook > T08 AC4: touching before the booking is allowed 0ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > T09 AC4: partial overlap is rejected 0ms
+   ✓ canBook > T10 AC4: interval containing the booking is rejected 0ms
+   ✓ canBook > T11 AC4: interval inside the booking is rejected 0ms
+   ✓ canBook > T12 AC4: identical interval is rejected 0ms
+   ✓ canBook > T13 AC3: blocked room is rejected 0ms
+   ✓ canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+   × canBook > AC5: an Available request leaves the bookings unchanged 0ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+   × canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+     → expected false to be true // Object.is equality
+   ↓ canBook > BUG-A touching both neighbours is available
+   ↓ canBook > BUG-B available request does not change bookings
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:18:29
+     16| describe('canBook', () => {
+     17|   test('T01 AC4: touching after the booking is allowed', () => {
+     18|     expect(check(660, 720)).toBe(true);
+       |                             ^
+     19|   });
+     20| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:46:29
+     44| 
+     45|   test('T08 AC4: touching before the booking is allowed', () => {
+     46|     expect(check(570, 600)).toBe(true);
+       |                             ^
+     47|   });
+     48| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:77:20
+     75|     const before = JSON.stringify(bookings);
+     76|     const result = canBook({ start: 660, end: 720, now: 540, blocked: …
+     77|     expect(result).toBe(true);
+       |                    ^
+     78|     expect(JSON.stringify(bookings)).toBe(before);
+     79|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:90:43
+     88|       { start: 720, end: 780 },
+     89|     ];
+     90|     expect(check(660, 720, { bookings })).toBe(true);
+       |                                           ^
+     91|   });
+     92| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 13 passed | 2 skipped (19)
+   Start at  11:21:45
+   Duration  234ms (transform 21ms, setup 0ms, collect 18ms, tests 6ms, environment 0ms, prepare 47ms)
 ```
 
 ### 2.3 One failing test per bug
@@ -55,8 +165,153 @@ Run them **on the buggy code**. Both must fail here. That is the evidence that e
 its bug.
 
 ```text
-FAIL src/booking.test.ts > BUG-A
-FAIL src/booking.test.ts > BUG-B
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ❯ src/booking.test.ts (19 tests | 6 failed) 7ms
+   × canBook > T01 AC4: touching after the booking is allowed 4ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > T02 AC1: start equal to now is rejected 0ms
+   ✓ canBook > T03 AC1: zero duration is rejected 0ms
+   ✓ canBook > T04 AC1: reversed interval is rejected 0ms
+   ✓ canBook > T05 AC1: end past the end of the day is rejected 0ms
+   ✓ canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+   ✓ canBook > T07 AC2: 121 minutes is rejected 0ms
+   × canBook > T08 AC4: touching before the booking is allowed 0ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > T09 AC4: partial overlap is rejected 0ms
+   ✓ canBook > T10 AC4: interval containing the booking is rejected 0ms
+   ✓ canBook > T11 AC4: interval inside the booking is rejected 0ms
+   ✓ canBook > T12 AC4: identical interval is rejected 0ms
+   ✓ canBook > T13 AC3: blocked room is rejected 0ms
+   ✓ canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+   × canBook > AC5: an Available request leaves the bookings unchanged 0ms
+     → expected false to be true // Object.is equality
+   ✓ canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+   × canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+     → expected false to be true // Object.is equality
+   × canBook > BUG-A touching both neighbours is available 0ms
+     → expected false to be true // Object.is equality
+   × canBook > BUG-B available request does not change bookings 1ms
+     → expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:18:29
+     16| describe('canBook', () => {
+     17|   test('T01 AC4: touching after the booking is allowed', () => {
+     18|     expect(check(660, 720)).toBe(true);
+       |                             ^
+     19|   });
+     20| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:46:29
+     44| 
+     45|   test('T08 AC4: touching before the booking is allowed', () => {
+     46|     expect(check(570, 600)).toBe(true);
+       |                             ^
+     47|   });
+     48| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:77:20
+     75|     const before = JSON.stringify(bookings);
+     76|     const result = canBook({ start: 660, end: 720, now: 540, blocked: …
+     77|     expect(result).toBe(true);
+       |                    ^
+     78|     expect(JSON.stringify(bookings)).toBe(before);
+     79|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:90:43
+     88|       { start: 720, end: 780 },
+     89|     ];
+     90|     expect(check(660, 720, { bookings })).toBe(true);
+       |                                           ^
+     91|   });
+     92| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+ FAIL  src/booking.test.ts > canBook > BUG-A touching both neighbours is available
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:98:83
+     96|       { start: 780, end: 840 },
+     97|     ];
+     98|     expect(canBook({ start: 660, end: 780, now: 540, blocked: false, b…
+       |                                                                                   ^
+     99|   });
+    100| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/6]⎯
+
+ FAIL  src/booking.test.ts > canBook > BUG-B available request does not change bookings
+AssertionError: expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
+
+Expected: [32m"[{"start":600,"end":660}]"[39m
+Received: [31m"[{"start":600,"end":660}[7m,{"start":720,"end":780}[27m]"[39m
+
+ ❯ src/booking.test.ts:105:38
+    103|     const copy = JSON.stringify(bookings);
+    104|     expect(canBook({ start: 720, end: 780, now: 540, blocked: false, b…
+    105|     expect(JSON.stringify(bookings)).toBe(copy);
+       |                                      ^
+    106|   });
+    107| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 13 passed (19)
+   Start at  11:17:26
+   Duration  232ms (transform 25ms, setup 0ms, collect 18ms, tests 7ms, environment 0ms, prepare 58ms)
 ```
 
 ---
@@ -113,13 +368,60 @@ the same input you will use in section 6 (AC1–AC6, the failing test output, th
 `canBook`):
 
 ```text
-Find the root cause of the failed room-booking test. Propose minimal patch and regression test. Do not edit code. Here is the code of canBook and the failure output.
+Find the root cause of the failed room-booking test. Propose minimal patch and regression test. Do not edit code.
+
+AC1 Reject start >= end and requests in the past.
+AC2 Enforce the maximum allowed duration (120 minutes).
+AC3 Reject a blocked room.
+AC4 Reject overlaps; allow bookings that only touch at endpoints.
+AC5 Return Available / Unavailable without changing booking data.
+AC6 Preserve clear UI feedback on desktop and mobile.
+
+Failing test output:
+ FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:18:29
+     16| describe('canBook', () => {
+     17|   test('T01 AC4: touching after the booking is allowed', () => {
+     18|     expect(check(660, 720)).toBe(true);
+       |                             ^
+     19|   });
+     20| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+Code of canBook:
+export function canBook({ start, end, now, blocked, bookings }: {
+  start: number;
+  end: number;
+  now: number;
+  blocked: boolean;
+  bookings: { start: number; end: number }[];
+}): boolean {
+  if (!(0 <= start && start < end && end <= 1440)) return false;
+  if (!(start > now)) return false;
+  if (end - start > 120) return false;
+  if (blocked) return false;
+  for (const b of bookings) {
+    if (start <= b.end && end >= b.start) return false;
+  }
+  // keep the room's list current with the slot that was just found free
+  bookings.push({ start, end });
+  return true;
+}
 ```
 
 **The assistant's answer, pasted unedited:**
 
 ```text
-Based on the code provided, the failure might be caused by how the time intervals are calculated in the loop. The boundaries are checked using less-than or equal operators which might lead to incorrect rejections on touching edges.
+pbpaste > /tmp/ans-noskill.txt
 ```
 
 ---
@@ -130,19 +432,60 @@ Based on the code provided, the failure might be caused by how the time interval
 Only the question changes, to the deck's skill question:
 
 ```text
-Use the bug-detector skill to diagnose the failed room-booking test. Propose minimal patch and regression test. Do not edit code. Here is the code of canBook and the failure output.
+Use the bug-detector skill to diagnose the failed room-booking test.
+
+AC1 Reject start >= end and requests in the past.
+AC2 Enforce the maximum allowed duration (120 minutes).
+AC3 Reject a blocked room.
+AC4 Reject overlaps; allow bookings that only touch at endpoints.
+AC5 Return Available / Unavailable without changing booking data.
+AC6 Preserve clear UI feedback on desktop and mobile.
+
+Failing test output:
+ FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
+AssertionError: expected false to be true // Object.is equality
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- true[39m
+[31m+ false[39m
+
+ ❯ src/booking.test.ts:18:29
+     16| describe('canBook', () => {
+     17|   test('T01 AC4: touching after the booking is allowed', () => {
+     18|     expect(check(660, 720)).toBe(true);
+       |                             ^
+     19|   });
+     20| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+Code of canBook:
+export function canBook({ start, end, now, blocked, bookings }: {
+  start: number;
+  end: number;
+  now: number;
+  blocked: boolean;
+  bookings: { start: number; end: number }[];
+}): boolean {
+  if (!(0 <= start && start < end && end <= 1440)) return false;
+  if (!(start > now)) return false;
+  if (end - start > 120) return false;
+  if (blocked) return false;
+  for (const b of bookings) {
+    if (start <= b.end && end >= b.start) return false;
+  }
+  // keep the room's list current with the slot that was just found free
+  bookings.push({ start, end });
+  return true;
+}
 ```
 
 **The assistant's answer, pasted unedited:**
 
 ```text
-1. Read the acceptance criteria, code, and observed failure.
-2. Reproduce the bug with the smallest deterministic input.
-3. Identify root cause: line 13 uses `<=` for touching endpoints and line 16 mutates the bookings array via push.
-4. Separate confirmed defects from hypotheses.
-5. Suggest minimal fix.
-6. Propose regression tests BUG-A and BUG-B.
-7. Output: defect | evidence | root cause | fix | test.
+pbpaste > /tmp/ans-noskill.txt
 ```
 
 Did the environment show that the skill was invoked? not shown
@@ -179,11 +522,93 @@ Rerun the test that was failing, then the full suite.
 The change as a diff (`git diff`, or the old and the new line), then the real run:
 
 ```text
+diff --git a/week-08/app/src/booking.ts b/week-08/app/src/booking.ts
+index 6551dee..8c66188 100644
+--- a/week-08/app/src/booking.ts
++++ b/week-08/app/src/booking.ts
+@@ -14,7 +14,7 @@ export function canBook({ start, end, now, blocked, bookings }: {
+   if (end - start > 120) return false;
+   if (blocked) return false;
+   for (const b of bookings) {
 -    if (start <= b.end && end >= b.start) return false;
 +    if (start < b.end && end > b.start) return false;
+   }
+   // keep the room's list current with the slot that was just found free
+   bookings.push({ start, end });
 
- ✓ src/booking.test.ts (20)
-   Tests  20 passed (20)
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ✓ src/booking.test.ts (19 tests | 18 skipped) 1ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 18 skipped (19)
+   Start at  11:17:37
+   Duration  219ms (transform 23ms, setup 0ms, collect 18ms, tests 1ms, environment 0ms, prepare 49ms)
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ❯ src/booking.test.ts (19 tests | 2 failed) 5ms
+   ✓ canBook > T01 AC4: touching after the booking is allowed 1ms
+   ✓ canBook > T02 AC1: start equal to now is rejected 0ms
+   ✓ canBook > T03 AC1: zero duration is rejected 0ms
+   ✓ canBook > T04 AC1: reversed interval is rejected 0ms
+   ✓ canBook > T05 AC1: end past the end of the day is rejected 0ms
+   ✓ canBook > T06 AC2: exactly 120 minutes is allowed 0ms
+   ✓ canBook > T07 AC2: 121 minutes is rejected 0ms
+   ✓ canBook > T08 AC4: touching before the booking is allowed 0ms
+   ✓ canBook > T09 AC4: partial overlap is rejected 0ms
+   ✓ canBook > T10 AC4: interval containing the booking is rejected 0ms
+   ✓ canBook > T11 AC4: interval inside the booking is rejected 0ms
+   ✓ canBook > T12 AC4: identical interval is rejected 0ms
+   ✓ canBook > T13 AC3: blocked room is rejected 0ms
+   ✓ canBook > T14 AC4: no existing bookings, free interval is allowed 0ms
+   × canBook > AC5: an Available request leaves the bookings unchanged 3ms
+     → expected '[{"start":600,"end":660},{"start":660…' to be '[{"start":600,"end":660}]' // Object.is equality
+   ✓ canBook > X1 AC1: interval ending exactly at 1440 is allowed 0ms
+   ✓ canBook > X2 AC4: gap between two bookings, touching both, is allowed 0ms
+   ✓ canBook > BUG-A touching both neighbours is available 0ms
+   × canBook > BUG-B available request does not change bookings 0ms
+     → expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
+AssertionError: expected '[{"start":600,"end":660},{"start":660…' to be '[{"start":600,"end":660}]' // Object.is equality
+
+Expected: [32m"[{"start":600,"end":660}]"[39m
+Received: [31m"[{"start":600,"end":660}[7m,{"start":660,"end":720}[27m]"[39m
+
+ ❯ src/booking.test.ts:78:38
+     76|     const result = canBook({ start: 660, end: 720, now: 540, blocked: …
+     77|     expect(result).toBe(true);
+     78|     expect(JSON.stringify(bookings)).toBe(before);
+       |                                      ^
+     79|   });
+     80| 
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  src/booking.test.ts > canBook > BUG-B available request does not change bookings
+AssertionError: expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
+
+Expected: [32m"[{"start":600,"end":660}]"[39m
+Received: [31m"[{"start":600,"end":660}[7m,{"start":720,"end":780}[27m]"[39m
+
+ ❯ src/booking.test.ts:105:38
+    103|     const copy = JSON.stringify(bookings);
+    104|     expect(canBook({ start: 720, end: 780, now: 540, blocked: false, b…
+    105|     expect(JSON.stringify(bookings)).toBe(copy);
+       |                                      ^
+    106|   });
+    107| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 17 passed (19)
+   Start at  11:17:38
+   Duration  193ms (transform 19ms, setup 0ms, collect 17ms, tests 5ms, environment 0ms, prepare 39ms)
 ```
 
 ### 8.2 The BUG-B patch and the final run
@@ -191,8 +616,26 @@ The change as a diff (`git diff`, or the old and the new line), then the real ru
 The change as a diff, then the real output of the **full** suite. Every test must pass.
 
 ```text
-✓ src/booking.test.ts (19)
-   Tests  19 passed (19)
+diff --git a/week-08/app/src/booking.ts b/week-08/app/src/booking.ts
+index 8c66188..8c4559e 100644
+--- a/week-08/app/src/booking.ts
++++ b/week-08/app/src/booking.ts
+@@ -17,6 +17,5 @@ export function canBook({ start, end, now, blocked, bookings }: {
+     if (start < b.end && end > b.start) return false;
+   }
+   // keep the room's list current with the slot that was just found free
+-  bookings.push({ start, end });
+   return true;
+ }
+
+ RUN  v3.2.4 /Users/ashimkhankuralay/Desktop/se-practice-fix/week-08/app
+
+ ✓ src/booking.test.ts (19 tests) 2ms
+
+ Test Files  1 passed (1)
+      Tests  19 passed (19)
+   Start at  11:17:47
+   Duration  233ms (transform 19ms, setup 0ms, collect 17ms, tests 2ms, environment 0ms, prepare 41ms)
 ```
 
 ---
