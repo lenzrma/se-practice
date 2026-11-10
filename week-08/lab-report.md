@@ -2,7 +2,7 @@
 
 **Name:** Ashimkhan Kuralay 
 **Group:** Monday from 16:00 to 19:00
-**Date:** November 8, 2026
+**Date:** November 8, 2026 (reworked and resubmitted on November 10, 2026 after the instructor's feedback)
 
 Fill in every section. **Do not delete, rename or renumber the headings.** The checker and the
 grader find your answers by them. You can add rows to any table, but never remove its header.
@@ -78,11 +78,11 @@ nothing else. This is the real output:
  FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:18:29
      16| describe('canBook', () => {
@@ -97,11 +97,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:46:29
      44| 
@@ -116,11 +116,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:77:20
      75|     const before = JSON.stringify(bookings);
@@ -135,11 +135,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:90:43
      88|       { start: 720, end: 780 },
@@ -199,11 +199,11 @@ its bug.
  FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:18:29
      16| describe('canBook', () => {
@@ -218,11 +218,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > T08 AC4: touching before the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:46:29
      44| 
@@ -237,11 +237,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:77:20
      75|     const before = JSON.stringify(bookings);
@@ -256,11 +256,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > X2 AC4: gap between two bookings, touching both, is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:90:43
      88|       { start: 720, end: 780 },
@@ -275,11 +275,11 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > BUG-A touching both neighbours is available
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:98:83
      96|       { start: 780, end: 840 },
@@ -294,8 +294,8 @@ AssertionError: expected false to be true // Object.is equality
  FAIL  src/booking.test.ts > canBook > BUG-B available request does not change bookings
 AssertionError: expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
 
-Expected: [32m"[{"start":600,"end":660}]"[39m
-Received: [31m"[{"start":600,"end":660}[7m,{"start":720,"end":780}[27m]"[39m
+Expected: "[{"start":600,"end":660}]"
+Received: "[{"start":600,"end":660},{"start":720,"end":780}]"
 
  ❯ src/booking.test.ts:105:38
     103|     const copy = JSON.stringify(bookings);
@@ -323,8 +323,8 @@ One row per defect. At least **BUG-A and BUG-B**. "Suspected cause" is your hypo
 
 | Defect | Test ID | Input | Expected | Actual | Suspected cause (line and why) |
 | --- | --- | --- | --- | --- | --- |
-| BUG-A | BUG-A | start: 660, end: 720 | true |false | Line 13: start <= b.end treats touching endpoints as an overlap |
-| BUG-B | BUG-B | bookings array | unchanged | mutated | Line 16: bookings.push({ start, end }) modifies the original input array |
+| BUG-A | BUG-A | start: 660, end: 720 | true |false | Line 17: start <= b.end treats touching endpoints as an overlap |
+| BUG-B | BUG-B | bookings array | unchanged | mutated | Line 20: bookings.push({ start, end }) modifies the original input array |
 
 ---
 
@@ -357,7 +357,7 @@ Archive:  skills/bug-detector.zip
 skill as enabled. If upload was not available, write `prompt-only simulation` and say why.
 Screenshot of the result: `evidence/install.png`.
 
-Prompt-only simulation was used because direct GUI file upload for custom skills was simulated via environment prompt context constraints.
+Prompt-only simulation, in Gemini. I did not upload a ZIP. I pasted the text of SKILL.md as the first message of a chat and then sent the question and the input. The screenshot in `evidence/install.png` shows that chat.
 
 ---
 
@@ -381,11 +381,11 @@ Failing test output:
  FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:18:29
      16| describe('canBook', () => {
@@ -418,10 +418,76 @@ export function canBook({ start, end, now, blocked, bookings }: {
 }
 ```
 
-**The assistant's answer, pasted unedited:**
+**The assistant's answer, as copied (only the code-fence lines were removed):**
 
 ```text
-pbpaste > /tmp/ans-noskill.txt
+### Root Cause Analysis
+
+1. **BUG-A (Interval Overlap Logic)**:
+* **Cause:** The overlap condition used inclusive operators (e.g., `<=` or `>=`), which incorrectly flagged adjacent bookings—where one booking ends exactly at the start time of the next—as conflicts.
+* **Impact:** Valid back-to-back reservations were rejected.
+
+
+2. **BUG-B (State Mutation)**:
+* **Cause:** The `canBook` validation function improperly mutated the shared state array by calling `.push()` during availability evaluation.
+* **Impact:** Side effects corrupted subsequent test runs and broke state immutability requirements.
+
+
+
+---
+
+### Minimal Patch (`src/booking.ts`)
+
+To resolve both defects without mutating state and correcting the interval comparison:
+
+
+export interface Booking {
+  start: number;
+  end: number;
+}
+
+export function canBook(bookings: Booking[], newBooking: Booking): boolean {
+  // Ensure function is pure and does not mutate the bookings array
+  // Correct interval overlap check: strict inequality prevents false positives on touching boundaries
+  const hasOverlap = bookings.some(
+    (b) => newBooking.start < b.end && newBooking.end > b.start
+  );
+
+  return !hasOverlap;
+}
+
+
+
+---
+
+### Regression Test (`src/booking.test.ts`)
+
+Add these regression tests to your test suite to prevent future regressions for BUG-A and BUG-B:
+
+
+import { describe, it, expect } from 'vitest';
+import { canBook, Booking } from './booking';
+
+describe('Booking Module Regression Tests', () => {
+  it('BUG-A: should allow adjacent touching bookings (no overlap)', () => {
+    const existingBookings: Booking[] = [{ start: 9, end: 10 }];
+    const adjacentBooking: Booking = { start: 10, end: 11 };
+
+    const result = canBook(existingBookings, adjacentBooking);
+    expect(result).toBe(true);
+  });
+
+  it('BUG-B: should not mutate the existing bookings array during validation', () => {
+    const existingBookings: Booking[] = [{ start: 9, end: 10 }];
+    const originalLength = existingBookings.length;
+    const testBooking: Booking = { start: 9.5, end: 10.5 };
+
+    canBook(existingBookings, testBooking);
+
+    expect(existingBookings.length).toBe(originalLength);
+    expect(existingBookings).toEqual([{ start: 9, end: 10 }]);
+  });
+});
 ```
 
 ---
@@ -445,11 +511,11 @@ Failing test output:
  FAIL  src/booking.test.ts > canBook > T01 AC4: touching after the booking is allowed
 AssertionError: expected false to be true // Object.is equality
 
-[32m- Expected[39m
-[31m+ Received[39m
+- Expected
++ Received
 
-[32m- true[39m
-[31m+ false[39m
+- true
++ false
 
  ❯ src/booking.test.ts:18:29
      16| describe('canBook', () => {
@@ -482,13 +548,55 @@ export function canBook({ start, end, now, blocked, bookings }: {
 }
 ```
 
-**The assistant's answer, pasted unedited:**
+**The assistant's answer, as copied (only the code-fence lines were removed):**
 
 ```text
-pbpaste > /tmp/ans-noskill.txt
+Using the **bug-detector** skill, here is the diagnosis and breakdown of the failed room-booking test in the Smart Campus booking application based on your recent debugging session and acceptance criteria:
+
+---
+
+### **1. Defect**
+
+* **Issue A (`BUG-A`):** Incorrect interval overlap logic in the `canBook` module, causing valid adjacent or touching booking time slots to be incorrectly flagged as scheduling conflicts.
+* **Issue B (`BUG-B`):** State mutation side effects inside the `canBook` function where the original bookings array was being modified during validation checks.
+
+### **2. Evidence**
+
+* The test suite failure reports unexpected rejections on back-to-back bookings (e.g., trying to book 10:00–11:00 immediately after a 09:00–10:00 booking).
+* State snapshots before and after calling `canBook` showed unexpected alterations to the input array order and contents.
+
+### **3. Root Cause**
+
+* **Overlap Logic:** The interval check was using inclusive comparison bounds (`<=` / `>=`) instead of strict inequalities for meeting start/end times that abut each other.
+* **Purity Violation:** Array mutation methods (such as in-place sorting or splicing) were used directly on the incoming array reference rather than operating on a shallow copy or using pure query methods (`some`, `filter`).
+
+### **4. Fix (Minimal & Non-Disruptive)**
+
+* **For Overlap Condition:** Update the conditional check to use strict boundaries so that an existing booking ending at `T` and a new booking starting at `T` are not considered overlapping:
+
+// Corrected overlap check
+const hasConflict = existingBookings.some(b => 
+  newBooking.startTime < b.endTime && newBooking.endTime > b.startTime
+);
+
+
+
+
+* **For Purity:** Ensure the bookings data structure remains untouched by avoiding in-place array mutators.
+
+### **5. Proposed Regression Test & Expected Result**
+
+* **Test Name:** `BUG-A` & `BUG-B` Regression Suite
+* **Test Setup:**
+1. Seed an existing booking from `09:00` to `10:00`.
+2. Attempt to book a new slot from `10:00` to `11:00`.
+3. Verify that the original bookings array remains identical in length, order, and content.
+
+
+* **Expected Result:** `canBook` returns `true` (no conflict detected) and the original bookings array reference is unchanged.
 ```
 
-Did the environment show that the skill was invoked? not shown
+Did the environment show that the skill was invoked? Not shown. This was a prompt-only simulation, so there is no skill badge.
 
 ---
 
@@ -499,17 +607,18 @@ tests showed. Write a short verdict in each cell, and give a reason where they d
 
 | Criterion | No skill | With skill |
 | --- | --- | --- |
-| Correct root cause | Partial | Correct |
-| Reproducible test | Missing | Provided |
-| Minimal proposed patch | Vague | Precise |
-| Unsupported claims | None | None |
-| Clarity of explanation | Moderate | High |
+| Correct root cause | Correct for both bugs, and it names `.push()` exactly for BUG-B | BUG-A correct. BUG-B is described as in-place sorting or splicing, but the code has `bookings.push` |
+| Reproducible test | Not runnable: it assumes another `canBook` signature. Its BUG-B test uses 9.5-10.5, which overlaps the booking, so `canBook` returns false before any push and the test would pass on the buggy code | No test code, only a description. Its scenario (touching booking plus array check) lets BUG-A hide BUG-B |
+| Minimal proposed patch | Not minimal: it rewrites `canBook`, changes the signature and drops the AC1-AC3 checks | Not applicable: it uses `startTime`, `endTime`, `existingBookings`, which are not in my code, and gives no concrete change for BUG-B |
+| Unsupported claims | "Side effects corrupted subsequent test runs" is not in the input | "State snapshots showed alterations", the 10:00-11:00 example and "your recent debugging session" are not in the input |
+| Clarity of explanation | Short and clear | Follows the seven-step output format, but step 4 was not done: everything is stated as fact |
 
 **Which bugs did each answer find?** (BUG-A, BUG-B, both, neither)
 
--No skill: BUG-A only
--With skill: both
+- No skill: both
+- With skill: both
 
+Neither patch can be used as written. I made the fixes myself (section 8).
 ---
 
 ## 8. Task 6 — repair and regression
@@ -575,8 +684,8 @@ index 6551dee..8c66188 100644
  FAIL  src/booking.test.ts > canBook > AC5: an Available request leaves the bookings unchanged
 AssertionError: expected '[{"start":600,"end":660},{"start":660…' to be '[{"start":600,"end":660}]' // Object.is equality
 
-Expected: [32m"[{"start":600,"end":660}]"[39m
-Received: [31m"[{"start":600,"end":660}[7m,{"start":660,"end":720}[27m]"[39m
+Expected: "[{"start":600,"end":660}]"
+Received: "[{"start":600,"end":660},{"start":660,"end":720}]"
 
  ❯ src/booking.test.ts:78:38
      76|     const result = canBook({ start: 660, end: 720, now: 540, blocked: …
@@ -591,8 +700,8 @@ Received: [31m"[{"start":600,"end":660}[7m,{"start":660,"end":720}[27m]"[39m
  FAIL  src/booking.test.ts > canBook > BUG-B available request does not change bookings
 AssertionError: expected '[{"start":600,"end":660},{"start":720…' to be '[{"start":600,"end":660}]' // Object.is equality
 
-Expected: [32m"[{"start":600,"end":660}]"[39m
-Received: [31m"[{"start":600,"end":660}[7m,{"start":720,"end":780}[27m]"[39m
+Expected: "[{"start":600,"end":660}]"
+Received: "[{"start":600,"end":660},{"start":720,"end":780}]"
 
  ❯ src/booking.test.ts:105:38
     103|     const copy = JSON.stringify(bookings);
@@ -653,7 +762,7 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
 ### 9.2 One limitation of AI-assisted debugging
 
 <!-- Use something that actually happened in sections 5-8. 20 words or more. -->
-- AI models can sometimes overlook side-effect mutations like array pushing unless prompted with rigorous structured procedural frameworks like the bug-detector skill.
+- Both assistants named BUG-A and BUG-B, but neither patch could be applied to my code: one rewrote `canBook` with a different signature and dropped AC1-AC3, the other used field names that do not exist. Both answers also use the names BUG-A and BUG-B, which were not in my input.
 
 ---
 
@@ -667,4 +776,4 @@ Use the same IDs as `known_fails` in `submission.yml`. Write `none` if the run i
      separated BUG-B as a hypothesis instead of a fact, because step 4 told it to. BUG-B was only
      visible after the BUG-A patch: the AC5 test had been failing for the wrong reason." -->
 
-The bug-detector skill significantly improved the debugging process by enforcing a structured 7-step procedure that systematically uncovered both logical boundary issues and hidden side-effect array mutations. As shown in section 7, while the unstructured prompt only caught the initial boundary defect, the skill-guided session accurately identified both BUG-A and BUG-B. Our test suite proved that touching intervals are valid and that array integrity must be preserved without side-effect mutations. However, tests alone do not explain the underlying systemic intent, requiring careful human code review and rigorous regression testing to ensure absolute reliability across all edge cases.
+Both answers named both bugs, so the skill did not find more. Section 7 shows the difference: with the skill the output followed the seven-step format, but it blamed sorting or splicing for BUG-B instead of push, it invented evidence, and step 4 did not separate facts from hypotheses. My tests proved more than either answer did. BUG-A and BUG-B failed on the buggy code, and after the BUG-A fix AC5 and BUG-B were still red, so BUG-A had been hiding BUG-B. The tests did not prove that no other bug exists, or that the skill helps on other code, because I ran one chat per condition.
