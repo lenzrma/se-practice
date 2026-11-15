@@ -28,7 +28,7 @@ checker:
   pass: 30
   fail: 0
   error: 0
-  commit: <FILL_IN_SHORT_SHA>
+  commit: 87a6a33
   known_fails: []
 
 review_findings:
