@@ -1,0 +1,45 @@
+# week-09/submission.yml — your declaration for this lab.
+#
+# Facts only. Every explanation goes in lab-report.md; nothing here repeats prose.
+# Fill every value. Check it before you push:
+#
+#     python tests/validate_submission.py
+#
+# The validator checks shape, never quality. A green run is the floor, not the grade.
+
+schema: 1
+week: "09"
+
+student:
+  name: Ashimkhan Kuralay
+  student_id: 24B030990
+  github: lenzrma
+
+assistant:
+  tool: Claude
+  model: claude-sonnet-5-5
+  fresh_chats: yes
+
+calls:
+  r3: asked
+  first_run_s_fails: 0
+
+checker:
+  pass: 30
+  fail: 0
+  error: 0
+  commit: 87a6a33
+  known_fails: []
+
+review_findings:
+  - R3 - the model asked one question about now, blocked, bookings and the exact hours instead of inventing values, and answered in Russian.
+  - R2 - the model called check_room with end = 990 (16:30) and blocked = true; the schema accepts it, only canBook answers Unavailable under AC3.
+  - S09 and S10 - boolean refused the string "false" and integer refused 600.5; all nine bad calls were refused on the first run.
+  - start, end - the schema cannot check start < end (AC1) or the 120 minute limit (AC2), so both stay in canBook.
+  - A7 and A8 - blocked, because a push to main skips the PR and .env sent to an unknown server leaks secrets for good.
+
+honesty:
+  definition_written_by_me: no
+  calls_unedited: yes
+  outputs_unedited: yes
+  ai_usage_disclosed: yes
